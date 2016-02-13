@@ -33,6 +33,9 @@ def update
 end
 
 def destroy
+	@article.destroy
+    flash[:notice] = "Article was successflly deleted"
+	redirect_to root_path
 end
 
 private
