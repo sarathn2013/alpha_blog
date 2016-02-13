@@ -24,6 +24,12 @@ def edit
 end
 
 def update
+	if @article.update(article_params)
+		flash[:notice] = "Article was successfully updated"
+		redirect_to article_path(@article)
+	else
+		render 'edit'
+	end
 end
 
 def destroy
