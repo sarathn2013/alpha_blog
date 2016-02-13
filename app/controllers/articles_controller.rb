@@ -11,7 +11,7 @@ def create
 	@article = Article.new(article_params)
 	if @article.save
 		flash[:notice] = "Article was successfully created"
-		redirect_to root_path
+		redirect_to articles_path
 	else
 		render 'new'
 	end
@@ -35,7 +35,7 @@ end
 def destroy
 	@article.destroy
     flash[:notice] = "Article was successflly deleted"
-	redirect_to root_path
+	redirect_to articles_path
 end
 
 private
