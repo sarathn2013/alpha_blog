@@ -21,14 +21,6 @@
 	<tr>
 		<td><%= a.title %></td>
 		<td><%= a.description %></td>
-		<td><div class="dropdown">
-  <button class="dropbtn">Dropdown</button>
-  <div class="dropdown-content">
-    <a href="#">Link 1</a>
-    <a href="#">Link 2</a>
-    <a href="#">Link 3</a>
-  </div>
-</div></td>
 		<td><%= link_to 'Edit', edit_article_path(a) %> |
 		<%= link_to 'Show', article_path(a) %> |
 		<%= link_to "Delete", article_path(a), method: :delete, data: { confirm: "Are you sure?"}%></td>
