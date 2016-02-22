@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
    before_action :find_user, only: [:edit, :update, :show]
    before_action :require_same_user, only: [:edit, :update]
+   before_action :require_admin, only: [:destroy]
 
 
 def index
@@ -40,6 +41,14 @@ def update
 	end
 end
 
+def destroy
+	@user=User.find(params[:id])
+	@user.destroy
+	flash[:danger] = "User and all articles created by user have been deleted"
+	redirect_to users_path
+end
+	end
+
 
 private
  def find_user
@@ -51,10 +60,16 @@ private
  end
 
  def require_same_user
-	if logged_in? && current_user != @user
+	if logged_in? && current_user != @user && !current_user.admin?
 		flash[:danger] = "You can edit your own profile only"
 		redirect_to edit_user_path(current_user)
 	end
 end
 
+def require_admin
+	if !current_user.admin? and logged_in?
+		flash[:danger] = "Only admin can perform this action"
+		redirect_to root_path
+	end
 end
+
