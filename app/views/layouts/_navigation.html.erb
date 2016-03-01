@@ -15,17 +15,32 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a id="lin" href="<%=articles_path%>">Articles <span class="sr-only">(current)</span></a></li>
-        <li><a id="lin" href="<%=new_article_path%>">New Article</a></li>
+        <li><a id="lin" href="<%=users_path%>">Users</a></li>
+        <% if logged_in? %>
         <li class="dropdown">
-          <a href="#" id="lin" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <a href="#" id="lin" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="<%=users_path%>">Users</a></li>
+            <li><a href="<%=new_article_path%>">New Article</a></li>
             <li><a href="#">Another action</a></li>
             <li><a href="#">Something else here</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="#">Separated link</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+        <% end %>
+        <li class="dropdown">
+          <a href="#" id="lin" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="<%=categories_path%>">All categories</a></li>
+            <% Category.all.each do |cat| %>
+            <li><a href="<%=category_path(cat)%>"><%= cat.name %></a></li>
+            <% end %>
+            <% if logged_in? and current_user.admin? %>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <% end %>
           </ul>
         </li>
       </ul>
