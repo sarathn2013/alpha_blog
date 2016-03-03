@@ -1,3 +1,4 @@
+
 <% obj.each do |article| %>
 <div class="row">
 <div class="col-xs-8 col-xs-offset-2">
@@ -22,9 +23,9 @@ last updated: <%= time_ago_in_words(article.updated_at) %> ago</small>
 <%= link_to "Delete this article", article_path(article), method: :delete,
 data: { confirm: "Are you sure you want to delete the article?"},
 class: "btn btn-xs btn-danger" %>
-
-<% end %>
 </div>
+<% end %>
+
 </div>
 </div>
 </div>
